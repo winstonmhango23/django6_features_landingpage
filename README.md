@@ -185,4 +185,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Acknowledgments
 
 - Thanks to the Django team for the amazing work on Django 6.0
+<<<<<<< HEAD
 - Special thanks to Winston Mhango for the comprehensive Django 6 guide
+=======
+- Special thanks to Winston Mhango for the comprehensive Django 6 guide
+>>>>>>> 852a57fef630dd624fe59f3081a6c795c23b1d59
