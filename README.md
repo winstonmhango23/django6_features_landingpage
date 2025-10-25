@@ -1,4 +1,10 @@
+
+
+
 # Django 6.0 Landing Page with New Features Demo
+
+<img width="972" height="558" alt="Macbook-Air-127 0 0 1" src="https://github.com/user-attachments/assets/0de005a9-87d7-4ac6-b55b-3a3524ac95ee" />
+
 
 This project demonstrates the key new features of Django 6.0 through a practical landing page implementation. It showcases template partials, Content Security Policy (CSP), background tasks, and the modern email API.
 
