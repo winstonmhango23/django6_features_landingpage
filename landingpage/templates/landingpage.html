@@ -1,0 +1,400 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+<div class="min-h-screen">
+  <!-- Header -->
+  <header class="bg-[#E85D3F] text-white px-6 py-3 flex items-center justify-between">
+    <span class="text-sm font-medium">Landing Page</span>
+    <div class="flex items-center gap-4">
+      <button class="hover:opacity-80">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+      </button>
+      <button class="hover:opacity-80">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z" />
+        </svg>
+      </button>
+      <button class="hover:opacity-80">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
+        </svg>
+      </button>
+      <button class="hover:opacity-80">
+        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-[#1A2B4A] text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+    </div>
+
+    <div class="container mx-auto px-6 py-16 relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div>
+          <div class="flex items-center gap-2 mb-6">
+            <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+              />
+            </svg>
+            <span class="text-lg font-semibold">EBOOK</span>
+          </div>
+
+          <h1 class="text-5xl font-bold mb-4 text-balance">DJANGO 6 FEATURES</h1>
+          <p class="text-xl mb-6">Proven Ways To Grow Your Development Skills Faster!</p>
+
+          <div class="flex gap-1 mb-6">
+            <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+            <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+            </svg>
+          </div>
+
+          <div class="space-y-3 mb-8">
+            <div class="flex items-center gap-3">
+              <div class="w-5 h-5 rounded-full bg-[#10B981] flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span class="text-sm">Template Partials for Modular Design</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-5 h-5 rounded-full bg-[#10B981] flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span class="text-sm">Built-in Content Security Policy</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="w-5 h-5 rounded-full bg-[#10B981] flex items-center justify-center flex-shrink-0">
+                <svg class="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <span class="text-sm">Native Background Tasks Framework</span>
+            </div>
+          </div>
+
+          <button id="open-modal" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-6 text-base rounded-full">
+            GET THE EBOOK
+          </button>
+        </div>
+
+        <div class="relative flex justify-center">
+          <div class="relative">
+            <img src="{% static 'winstonjs-full-image.png' %}" alt="Django 6 Features Book" class="w-full max-w-md" />
+          </div>
+        </div>
+      </div>
+
+      <!-- Logos and Testimonial -->
+      <div class="mt-16 bg-white/5 backdrop-blur-sm rounded-2xl p-8">
+        <div class="flex flex-wrap items-center justify-center gap-8 mb-8">
+          <div class="text-gray-400 text-sm font-serif italic">Django Community</div>
+          <div class="text-gray-400 text-xs font-semibold">
+            PYTHON
+            <br />
+            SOFTWARE FOUNDATION
+          </div>
+          <div class="text-gray-400 text-sm flex items-center gap-2">
+            <span class="text-2xl">e</span>Learning
+          </div>
+        </div>
+
+        <div class="text-center max-w-2xl mx-auto">
+          <p class="text-sm text-gray-300 mb-4 leading-relaxed">
+            Django 6 brings powerful new features that will transform your web development workflow. 
+            Template partials, CSP, background tasks, and more await you in this comprehensive guide.
+          </p>
+          <div class="flex items-center justify-center gap-3">
+            <img src="{% static 'winstonmhango-headshot.jpg' %}" alt="Winston Mhango" class="w-12 h-12 rounded-full" />
+            <span class="text-[#10B981] font-medium">Winston Mhango</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Courses Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold text-center mb-16 text-gray-900">Key Features Covered</h2>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="text-center">
+          <div class="relative inline-block mb-6">
+            <div class="w-32 h-32 rounded-full bg-[#10B981]/10 flex items-center justify-center">
+              <span class="text-6xl font-bold text-[#10B981]" style="text-shadow: 2px 2px 0px rgba(16, 185, 129, 0.3);">
+                1
+              </span>
+            </div>
+          </div>
+          <h3 class="font-bold text-sm mb-3 text-gray-900">TEMPLATE PARTIALS</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Reusable inline template fragments without splitting components into separate files for cleaner organization.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="relative inline-block mb-6">
+            <div class="w-32 h-32 rounded-full bg-[#10B981]/10 flex items-center justify-center">
+              <span class="text-6xl font-bold text-[#10B981]" style="text-shadow: 2px 2px 0px rgba(16, 185, 129, 0.3);">
+                2
+              </span>
+            </div>
+          </div>
+          <h3 class="font-bold text-sm mb-3 text-gray-900">BACKGROUND TASKS</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Native framework for running code outside the HTTP request-response cycle for better performance.
+          </p>
+        </div>
+        <div class="text-center">
+          <div class="relative inline-block mb-6">
+            <div class="w-32 h-32 rounded-full bg-[#10B981]/10 flex items-center justify-center">
+              <span class="text-6xl font-bold text-[#10B981]" style="text-shadow: 2px 2px 0px rgba(16, 185, 129, 0.3);">
+                3
+              </span>
+            </div>
+          </div>
+          <h3 class="font-bold text-sm mb-3 text-gray-900">CONTENT SECURITY</h3>
+          <p class="text-sm text-gray-600 leading-relaxed">
+            Built-in CSP support to protect your applications against XSS and content injection attacks.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="bg-[#1A2B4A] text-white py-16">
+    <div class="container mx-auto px-6">
+      <div class="max-w-4xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+        <div>
+          <h2 class="text-3xl font-bold mb-3">Get Your Own Copy Of Django 6 Guide!</h2>
+          <p class="text-sm text-gray-300">
+            Master Django 6's powerful new features with this comprehensive ebook. 
+            Everything you need to know about template partials, CSP, background tasks, and more.
+          </p>
+        </div>
+        <button id="open-modal-2" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-6 text-base rounded-full whitespace-nowrap">
+          GET THE EBOOK
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonial Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="container mx-auto px-6">
+      <div class="max-w-3xl mx-auto text-center">
+        <img src="{% static 'winstonmhango-headshot.jpg' %}" alt="Testimonial" class="w-20 h-20 rounded-full mx-auto mb-6" />
+        <p class="text-gray-700 italic mb-6 leading-relaxed">
+          "Django 6's template partials feature has completely transformed how I structure my templates. 
+          The built-in CSP support gives me peace of mind about security, and the background tasks 
+          framework makes async processing so much easier. This guide covers everything you need to know!"
+        </p>
+        <span class="text-[#10B981] font-medium">Winston Mhango</span>
+        <p class="text-sm text-gray-600 mt-1">Django Developer & Author</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Author Section -->
+  <section class="py-20 bg-white">
+    <div class="container mx-auto px-6">
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <img src="{% static 'winstonjs-full-image.png' %}" alt="Winston Mhango" class="w-full rounded-lg" />
+        </div>
+        <div>
+          <p class="text-sm text-gray-500 mb-2">About Author</p>
+          <h2 class="text-4xl font-bold mb-6 text-gray-900">Winston Mhango</h2>
+          <p class="text-gray-700 mb-4 leading-relaxed">
+            Winston is a senior Django developer with over 8 years of experience building web applications. 
+            He has contributed to numerous open-source Django projects and has also written a Django guide titled 
+            <a href="https://marvelous-founder-1838.kit.com/1c997bd676" class="text-[#10B981] hover:underline">ILLUSTRATED GUIDE TO DJANGO</a>.
+            His expertise in Django internals and best practices makes him the perfect guide for mastering Django 6.
+          </p>
+          <p class="text-gray-600 italic mb-6 leading-relaxed">
+            "Django 6 represents the most significant update to the framework in years. 
+            I'm excited to share these powerful new features with the Django community."
+          </p>
+          <div class="text-4xl font-script text-gray-800">Winston</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer CTA -->
+  <section class="bg-[#1A2B4A] text-white py-20 relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
+    </div>
+
+    <div class="container mx-auto px-6 text-center relative z-10">
+      <div class="flex gap-1 justify-center mb-6">
+        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
+        </svg>
+      </div>
+
+      <h2 class="text-5xl font-bold mb-4">MASTER DJANGO 6</h2>
+      <p class="text-xl mb-6">Proven Ways To Grow Your Development Skills Faster!</p>
+      <p class="text-sm text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
+        Join thousands of Django developers who have already upgraded their skills with Django 6. 
+        Get instant access to the complete guide and start building better applications today.
+      </p>
+      <button id="open-modal-3" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-4 text-lg rounded-full">
+        GET YOUR FREE COPY
+      </button>
+    </div>
+  </section>
+  
+  {% partial subscription_modal %}
+</div>
+
+{% partialdef subscription_modal %}
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-md mx-4">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="text-xl font-bold text-gray-800">Get Your Django 6 Guide</h2>
+      <button id="close-modal" class="text-gray-500 hover:text-gray-700">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+        </svg>
+      </button>
+    </div>
+    <p class="text-gray-600 mb-6">Enter your email to receive the Django 6 Features Guide instantly.</p>
+    <form id="subscribe-form">
+      {% csrf_token %}
+      <div class="mb-4">
+        <label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2">
+          {{ form.email.label }}
+        </label>
+        {{ form.email }}
+      </div>
+      <div id="error-email" class="mt-2 text-red-600 text-sm"></div>
+      <button type="submit" class="mt-4 w-full bg-[#10B981] hover:bg-[#059669] text-white font-bold py-3 px-4 rounded-full shadow focus:outline-none focus:shadow-outline">
+        Send My Free Guide
+      </button>
+    </form>
+    <p class="text-xs text-gray-500 text-center mt-4">
+      We respect your privacy. Unsubscribe at any time.
+    </p>
+  </div>
+</div>
+{% endpartialdef %}
+
+<script>
+// Handle all modal open buttons
+document.getElementById('open-modal').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('hidden');
+});
+
+document.getElementById('open-modal-2').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('hidden');
+});
+
+document.getElementById('open-modal-3').addEventListener('click', () => {
+  document.getElementById('modal').classList.remove('hidden');
+});
+
+// handle close
+document.getElementById('close-modal').addEventListener('click', () => {
+  document.getElementById('modal').classList.add('hidden');
+});
+
+// Close modal when clicking outside of it
+document.getElementById('modal').addEventListener('click', (e) => {
+  if (e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.add('hidden');
+  }
+});
+
+// handle form submit
+document.getElementById('subscribe-form').addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const form = e.target;
+  const emailInput = form.querySelector('input[name="email"]');
+  const errorDiv = document.getElementById('error-email');
+
+  errorDiv.textContent = '';
+  
+  // Get CSRF token
+  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+  
+  const response = await fetch("{% url 'subscriptions:subscribe_ajax' %}", {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'X-CSRFToken': csrftoken
+    },
+    body: new URLSearchParams({
+      'email': emailInput.value
+    })
+  });
+  
+  const data = await response.json();
+  if (data.success) {
+    // subscription succeeded
+    form.innerHTML = `
+      <div class="text-center py-4">
+        <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+          <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
+        <p class="text-gray-600 mb-4">Your guide is ready to download.</p>
+        <a href="{% static 'DJANGO6_FEATURES.html' %}" class="inline-block bg-[#10B981] hover:bg-[#059669] text-white font-bold py-3 px-6 rounded-full shadow" download>
+          Download Your Guide
+        </a>
+        <p class="text-gray-600 mt-4 text-sm">Also check out our <a href="{% static 'django6_blog_post.html' %}" class="text-[#10B981] hover:underline">comprehensive blog post</a> about Django 6 features!</p>
+      </div>
+    `;
+  } else {
+    if (data.errors && data.errors.email) {
+      errorDiv.textContent = data.errors.email.join(', ');
+    } else {
+      errorDiv.textContent = "Please correct the error and try again.";
+    }
+  }
+});
+</script>
+{% endblock %}

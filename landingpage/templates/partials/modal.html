@@ -1,0 +1,16 @@
+{% partialdef subscription_modal %}
+<div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden justify-center items-center">
+  <div class="bg-white p-6 rounded shadow-lg w-full max-w-md">
+    <h2 class="text-xl font-semibold mb-4">Subscribe to Download Guide</h2>
+    <form id="subscribe-form">
+      {{ form.email.label_tag }}
+      {{ form.email }}
+      <div id="error-email" class="mt-2 text-red-600"></div>
+      <button type="submit" class="mt-4 w-full bg-blue-600 text-white py-2 rounded">
+        Submit
+      </button>
+    </form>
+    <button id="close-modal" class="mt-4 text-gray-600">Close</button>
+  </div>
+</div>
+{% endpartialdef %}

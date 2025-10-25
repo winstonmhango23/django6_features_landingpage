@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exploring Django 6.0 New Features: A Practical Landing Page</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        h2 {
+            font-size: 1.8em;
+            margin-top: 30px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3498db;
+        }
+        h3 {
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .author {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .toc {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .toc h3 {
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #bdc3c7;
+            color: #7f8c8d;
+        }
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .highlight {
+            background-color: #fff9c4;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <div class="container bg-white rounded-lg shadow-lg p-8 my-8">
+        <h1>Exploring Django 6.0 New Features: A Practical Landing Page with Template Partials, CSP, and Background Tasks</h1>
+        <p class="author">By Winston Mhango</p>
+        
+        <p>Django 6.0 represents one of the most significant updates to the framework in recent years, introducing several powerful features that enhance developer experience, security, and performance. In this comprehensive guide, we'll explore the key new features of Django 6.0 by building a practical landing page example that demonstrates:</p>
+        
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+                <li>Introduction</li>
+                <li>Key Features of Django 6.0</li>
+                <li>Project Structure and Implementation</li>
+                <li>Best Practices and Migration Guide</li>
+                <li>Conclusion</li>
+                <li>About the Author</li>
+            </ol>
+        </div>
+        
+        <h2>Introduction</h2>
+        <p>Django 6.0 represents one of the most significant updates to the framework in recent years, introducing several powerful features that enhance developer experience, security, and performance. In this comprehensive guide, we'll explore the key new features of Django 6.0 by building a practical landing page example that demonstrates:</p>
+        
+        <ol>
+            <li>Template Partials for modular template design</li>
+            <li>Built-in Content Security Policy (CSP) support</li>
+            <li>Native Background Tasks framework</li>
+            <li>Modern Email API adoption</li>
+        </ol>
+        
+        <p>Our landing page will showcase these features in a real-world context, providing you with practical examples you can implement in your own projects.</p>
+        
+        <h2>Key Features of Django 6.0</h2>
+        
+        <h3>1. Template Partials</h3>
+        <p>Template partials are one of the most anticipated features in Django 6.0. This feature allows developers to define reusable template fragments inline within the same template file, eliminating the need to split related code into separate files.</p>
+        
+        <h4>How Template Partials Work</h4>
+        <p>Template partials introduce two new template tags:</p>
+        <ul>
+            <li><code>{% partialdef %}</code> - to define a partial</li>
+            <li><code>{% partial %}</code> - to render a partial</li>
+        </ul>
+        
+        <p>Here's how we've implemented template partials in our landing page:</p>
+        
+        <pre>
+{% partialdef subscription_modal %}
+&lt;div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"&gt;
+  &lt;div class="bg-white p-6 rounded-lg shadow-xl w-full max-w-md mx-4"&gt;
+    &lt;div class="flex justify-between items-center mb-4"&gt;
+      &lt;h2 class="text-xl font-bold text-gray-800"&gt;Get Your Django 6 Guide&lt;/h2&gt;
+      &lt;button id="close-modal" class="text-gray-500 hover:text-gray-700"&gt;
+        &lt;svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"&gt;
+          &lt;path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"&gt;&lt;/path&gt;
+        &lt;/svg&gt;
+      &lt;/button&gt;
+    &lt;/div&gt;
+    &lt;p class="text-gray-600 mb-6"&gt;Enter your email to receive the Django 6 Features Guide instantly.&lt;/p&gt;
+    &lt;form id="subscribe-form"&gt;
+      {% csrf_token %}
+      &lt;div class="mb-4"&gt;
+        &lt;label for="{{ form.email.id_for_label }}" class="block text-gray-700 text-sm font-bold mb-2"&gt;
+          {{ form.email.label }}
+        &lt;/label&gt;
+        {{ form.email }}
+      &lt;/div&gt;
+      &lt;div id="error-email" class="mt-2 text-red-600 text-sm"&gt;&lt;/div&gt;
+      &lt;button type="submit" class="mt-4 w-full bg-[#10B981] hover:bg-[#059669] text-white font-bold py-3 px-4 rounded-full shadow focus:outline-none focus:shadow-outline"&gt;
+        Send My Free Guide
+      &lt;/button&gt;
+    &lt;/form&gt;
+    &lt;p class="text-xs text-gray-500 text-center mt-4"&gt;
+      We respect your privacy. Unsubscribe at any time.
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+{% endpartialdef %}
+
+&lt;!-- Usage in the same template --&gt;
+{% partial subscription_modal %}
+        </pre>
+        
+        <h4>Benefits of Template Partials</h4>
+        <ol>
+            <li><strong>Keep related template code together</strong> - No need to create separate files for small components</li>
+            <li><strong>Reduce file clutter</strong> - Eliminates proliferation of small template files</li>
+            <li><strong>Improve template maintainability</strong> - Related code stays together</li>
+            <li><strong>Enable better component organization</strong> - Easier to understand and modify</li>
+        </ol>
+        
+        <h3>2. Content Security Policy (CSP)</h3>
+        <p>Django 6.0 introduces built-in support for Content Security Policy (CSP), a security standard that helps prevent cross-site scripting (XSS), clickjacking, and other code injection attacks.</p>
+        
+        <h4>Implementation in Our Landing Page</h4>
+        <p>In our project, we've configured CSP in <code>settings.py</code>:</p>
+        
+        <pre>
+# settings.py
+from django.utils.csp import CSP
+
+MIDDLEWARE = [
+    # ... other middleware
+    'django.middleware.content_security_policy.ContentSecurityPolicyMiddleware',
+]
+
+SECURE_CSP = {
+    "default-src": [CSP.SELF],
+    "script-src": [CSP.SELF, 'https://cdn.tailwindcss.com'],
+    "style-src": [CSP.SELF, 'https://fonts.googleapis.com'],
+    "img-src": [CSP.SELF, 'data:', 'https:'],
+    "font-src": [CSP.SELF, 'https://fonts.gstatic.com'],
+}
+
+# Report-only mode for testing
+SECURE_CSP_REPORT_ONLY = False
+        </pre>
+        
+        <h4>Benefits of Built-in CSP</h4>
+        <ol>
+            <li><strong>Enhanced security</strong> - Protection against XSS and content injection attacks</li>
+            <li><strong>Easy configuration</strong> - Simple dictionary-based policy definition</li>
+            <li><strong>Built-in middleware</strong> - No need for third-party packages</li>
+            <li><strong>Nonce support</strong> - Secure handling of inline scripts</li>
+        </ol>
+        
+        <h3>3. Background Tasks Framework</h3>
+        <p>Django 6.0 introduces a native Tasks framework for running code outside the HTTP request-response cycle. This is particularly useful for long-running operations that would otherwise block the user interface.</p>
+        
+        <h4>Implementation in Our Landing Page</h4>
+        <p>We've created a simple task to send a welcome email to subscribers:</p>
+        
+        <pre>
+# tasks.py
+from django.core.mail import send_mail
+from django.tasks import task
+
+@task
+def send_welcome_email(user_id):
+    from myapp.models import User
+    user = User.objects.get(id=user_id)
+    return send_mail(
+        subject="Welcome to Our Django 6 Guide",
+        message=f"Hello {user.name}, thank you for downloading our Django 6 Features Guide!",
+        from_email="noreply@example.com",
+        recipient_list=[user.email],
+    )
+        </pre>
+        
+        <p>In our view, we enqueue the task after a successful subscription:</p>
+        
+        <pre>
+# views.py
+from .tasks import send_welcome_email
+
+def subscribe_ajax(request):
+    if request.method == "POST":
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            obj, created = Subscription.objects.get_or_create(email=email)
+            
+            # Enqueue the welcome email task
+            send_welcome_email.enqueue(user_id=obj.id)
+            
+            return JsonResponse({"success": True})
+        else:
+            return JsonResponse({"success": False, "errors": form.errors})
+    return JsonResponse({"success": False, "errors": {"__all__": "Invalid request"}})
+        </pre>
+        
+        <h4>Benefits of Native Background Tasks</h4>
+        <ol>
+            <li><strong>No external dependencies</strong> - Built into Django core</li>
+            <li><strong>Simplified setup</strong> - Easy to define and enqueue tasks</li>
+            <li><strong>Better integration</strong> - Seamless with Django's existing architecture</li>
+            <li><strong>Improved performance</strong> - Non-blocking operations for better UX</li>
+        </ol>
+        
+        <h3>4. Modern Email API</h3>
+        <p>Django 6.0 adopts Python's modern email API, offering a cleaner and Unicode-friendly interface for composing and sending emails.</p>
+        
+        <h4>Implementation Example</h4>
+        <pre>
+from django.core.mail import EmailMessage
+
+# Create a message with the modern API
+message = EmailMessage(
+    subject="Hello from Django 6",
+    body="This is the email body",
+    from_email="sender@example.com",
+    to=["recipient@example.com"],
+)
+
+# Add attachments
+message.attach("document.pdf", pdf_content, "application/pdf")
+
+# Send the message
+message.send()
+        </pre>
+        
+        <h4>Benefits of Modern Email API</h4>
+        <ol>
+            <li><strong>Cleaner interface</strong> - Uses <code>email.message.EmailMessage</code></li>
+            <li><strong>Better Unicode support</strong> - Proper handling of international characters</li>
+            <li><strong>Simplified composition</strong> - More intuitive API</li>
+            <li><strong>Modern standards</strong> - Compatible with current email protocols</li>
+        </ol>
+        
+        <h2>Project Structure and Implementation</h2>
+        <p>Let's examine how these features come together in our landing page project.</p>
+        
+        <h3>Project Setup</h3>
+        <p>First, we created a standard Django project with a subscriptions app:</p>
+        
+        <pre>
+django-admin startproject landingpage
+cd landingpage
+python manage.py startapp subscriptions
+        </pre>
+        
+        <p>We then added the necessary apps to <code>INSTALLED_APPS</code> in <code>settings.py</code>:</p>
+        
+        <pre>
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "subscriptions",
+]
+        </pre>
+        
+        <h3>Models</h3>
+        <p>We created a simple model to store subscriber information:</p>
+        
+        <pre>
+# models.py
+from django.db import models
+
+class Subscription(models.Model):
+    email = models.EmailField(unique=True)
+    subscribed_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
+        </pre>
+        
+        <h3>Forms</h3>
+        <p>We implemented a form for email validation:</p>
+        
+        <pre>
+# forms.py
+from django import forms
+
+class SubscriptionForm(forms.Form):
+    email = forms.EmailField(
+        label="Email Address",
+        widget=forms.EmailInput(attrs={
+            "class": "w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition",
+            "placeholder": "you@example.com"
+        })
+    )
+        </pre>
+        
+        <h3>Views</h3>
+        <p>Our views handle both the landing page display and AJAX subscription:</p>
+        
+        <pre>
+# views.py
+from django.shortcuts import render
+from django.http import JsonResponse
+from .forms import SubscriptionForm
+from .models import Subscription
+
+def landing(request):
+    form = SubscriptionForm()
+    return render(request, "landingpage.html", {"form": form})
+
+def subscribe_ajax(request):
+    if request.method == "POST":
+        form = SubscriptionForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data["email"]
+            obj, created = Subscription.objects.get_or_create(email=email)
+            return JsonResponse({"success": True})
+        else:
+            return JsonResponse({"success": False, "errors": form.errors})
+    return JsonResponse({"success": False, "errors": {"__all__": "Invalid request"}})
+        </pre>
+        
+        <h3>Templates</h3>
+        <p>Our main template uses Tailwind CSS for styling and implements all the new Django 6.0 features:</p>
+        
+        <pre>
+&lt;!-- landingpage.html --&gt;
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+&lt;div class="min-h-screen"&gt;
+  &lt;!-- Hero Section with Template Partials --&gt;
+  &lt;section class="bg-[#1A2B4A] text-white relative overflow-hidden"&gt;
+    &lt;!-- Content here --&gt;
+    
+    &lt;!-- Using our defined partial --&gt;
+    {% partial subscription_modal %}
+  &lt;/section&gt;
+  
+  &lt;!-- Template partial definition --&gt;
+  {% partialdef subscription_modal %}
+  &lt;div id="modal" class="fixed inset-0 bg-black bg-opacity-50 hidden flex items-center justify-center z-50"&gt;
+    &lt;!-- Modal content --&gt;
+  &lt;/div&gt;
+  {% endpartialdef %}
+&lt;/div&gt;
+
+&lt;script&gt;
+// JavaScript for handling the subscription form with AJAX
+document.getElementById('subscribe-form').addEventListener('submit', async (e) =&gt; {
+  e.preventDefault();
+  // AJAX submission logic
+});
+&lt;/script&gt;
+{% endblock %}
+        </pre>
+        
+        <h2>Best Practices and Migration Guide</h2>
+        
+        <h3>Template Partials Best Practices</h3>
+        <ol>
+            <li><strong>Use descriptive names</strong> for your partials to make them self-documenting</li>
+            <li><strong>Keep partials focused</strong> on a single responsibility</li>
+            <li><strong>Pass context explicitly</strong> rather than relying on global context</li>
+            <li><strong>Consider reusability</strong> when designing partials</li>
+        </ol>
+        
+        <h3>CSP Best Practices</h3>
+        <ol>
+            <li><strong>Start with report-only mode</strong> (<code>SECURE_CSP_REPORT_ONLY = True</code>) to identify issues</li>
+            <li><strong>Use specific sources</strong> rather than wildcards when possible</li>
+            <li><strong>Implement nonce-based CSP</strong> for inline scripts</li>
+            <li><strong>Regularly review and update</strong> your CSP policies</li>
+        </ol>
+        
+        <h3>Background Tasks Best Practices</h3>
+        <ol>
+            <li><strong>Handle exceptions</strong> in your tasks to prevent silent failures</li>
+            <li><strong>Keep tasks idempotent</strong> when possible to handle retries</li>
+            <li><strong>Monitor task execution</strong> and set appropriate TTL values</li>
+            <li><strong>Use appropriate backends</strong> for your deployment environment</li>
+        </ol>
+        
+        <h2>Migration from Previous Versions</h2>
+        
+        <h3>From Third-Party Template Partials</h3>
+        <p>If you were using the <code>django-template-partials</code> third-party package:</p>
+        
+        <ol>
+            <li>Remove the package from your requirements:
+                <pre>pip uninstall django-template-partials</pre>
+            </li>
+            <li>Remove it from <code>INSTALLED_APPS</code>:
+                <pre>
+# Remove this line
+# 'template_partials',
+                </pre>
+            </li>
+            <li>Update your templates to use the built-in syntax (usually no changes needed).</li>
+        </ol>
+        
+        <h3>CSP Migration</h3>
+        <p>If you were using a third-party CSP package:</p>
+        
+        <ol>
+            <li>Remove the third-party package:
+                <pre>pip uninstall django-csp</pre>
+            </li>
+            <li>Update your settings to use the new built-in configuration.</li>
+        </ol>
+        
+        <h2>Conclusion</h2>
+        <p>Django 6.0 brings significant improvements that will enhance your development experience and application security. The features we've explored in this guide demonstrate how Django continues to evolve with the needs of modern web development:</p>
+        
+        <ol>
+            <li><strong>Template Partials</strong> simplify template organization and reduce file clutter</li>
+            <li><strong>Built-in CSP</strong> improves application security without external dependencies</li>
+            <li><strong>Native Background Tasks</strong> eliminate the need for Celery in simple use cases</li>
+            <li><strong>Modern Email API</strong> provides better Unicode support and cleaner interfaces</li>
+        </ol>
+        
+        <p>Our landing page example showcases how these features work together to create a robust, secure, and maintainable application. By implementing these patterns in your own projects, you can take full advantage of what Django 6.0 has to offer.</p>
+        
+        <p>Whether you're building a simple landing page or a complex web application, Django 6.0's new features provide powerful tools to help you create better applications faster.</p>
+        
+        <h2>About the Author</h2>
+        <p><strong>Winston Mhango</strong> is a senior Django developer with over 8 years of experience building web applications. He has contributed to numerous open-source Django projects and has also written a Django guide titled <a href="https://marvelous-founder-1838.kit.com/1c997bd676">ILLUSTRATED GUIDE TO DJANGO</a>. His expertise in Django internals and best practices makes him the perfect guide for mastering Django 6.</p>
+        
+        <div class="contact-info">
+            <h3>Contact Information:</h3>
+            <ul>
+                <li>Email: <a href="mailto:winstonmhango23@gmail.com">winstonmhango23@gmail.com</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/winston-mhango-401980ab/">Winston Mhango</a></li>
+                <li>GitHub: <a href="https://github.com/winstonmhango23/">winstonmhango23</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>This guide is © 2025 Winston Mhango. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

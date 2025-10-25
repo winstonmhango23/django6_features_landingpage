@@ -144,7 +144,9 @@ Thumbs.db
 # Exclude the LESSONS directory
 LESSONS/
 
-# But keep the downloadable files and necessary project files
+# Keep the landingpage project
+!landingpage/
+!landingpage/static/
 !landingpage/static/DJANGO6_FEATURES.html
 !landingpage/static/django6_guide.html
 !landingpage/static/winstonjs-full-image.png
@@ -161,6 +163,3 @@ LESSONS/
 
 # Keep HTML files
 !landingpage/static/*.html
-
-# Keep the landingpage project
-landingpage/

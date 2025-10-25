@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mastering Django 6: A Comprehensive Guide to New Features</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2c3e50;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 20px;
+            font-size: 2.5em;
+        }
+        h2 {
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            font-size: 1.8em;
+        }
+        h3 {
+            font-size: 1.4em;
+            margin-top: 25px;
+        }
+        code {
+            background-color: #ecf0f1;
+            padding: 2px 5px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85em;
+            line-height: 1.4;
+        }
+        ul, ol {
+            padding-left: 20px;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .author {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-top: 30px;
+            font-size: 1.2em;
+        }
+        .toc {
+            background-color: #e8f4fc;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .toc h3 {
+            margin-top: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #bdc3c7;
+            color: #7f8c8d;
+        }
+        .contact-info {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            margin: 15px 0;
+        }
+        .page-break {
+            page-break-before: always;
+        }
+        a {
+            color: #3498db;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Mastering Django 6: A Comprehensive Guide to New Features</h1>
+        <p class="author">By Winston Mhango</p>
+        
+        <p>Welcome to the definitive guide to Django 6's groundbreaking features! This comprehensive resource will walk you through all the major updates and show you how to leverage them to build better web applications.</p>
+        
+        <div class="toc">
+            <h3>Table of Contents</h3>
+            <ol>
+                <li>Introduction to Django 6</li>
+                <li>Template Partials</li>
+                <li>Content Security Policy (CSP)</li>
+                <li>Background Tasks Framework</li>
+                <li>Modern Email API</li>
+                <li>AsyncPaginator</li>
+                <li>Other Notable Features</li>
+                <li>Migration Guide</li>
+                <li>Best Practices</li>
+                <li>Conclusion</li>
+            </ol>
+        </div>
+        
+        <h2>1. Introduction to Django 6</h2>
+        <p>Django 6 represents one of the most significant updates to the framework in recent years. With a focus on developer experience, security, and performance, this release introduces several powerful features that will transform how we build Django applications.</p>
+        
+        <p>Key highlights include:</p>
+        <ul>
+            <li>Template Partials for modular template design</li>
+            <li>Built-in Content Security Policy support</li>
+            <li>Native Background Tasks framework</li>
+            <li>Adoption of Python's modern email API</li>
+            <li>AsyncPaginator for improved async performance</li>
+        </ul>
+        
+        <h2>2. Template Partials</h2>
+        <h3>What are Template Partials?</h3>
+        <p>Template partials are reusable template fragments that can be defined and used within the same template file. This feature eliminates the need to split related template code into separate files, making templates more maintainable and organized.</p>
+        
+        <h3>How to Use Template Partials</h3>
+        <pre>
+{% load partials %}
+
+{% partialdef user_card %}
+&lt;div class="card"&gt;
+  &lt;h3&gt;{{ user.name }}&lt;/h3&gt;
+  &lt;p&gt;{{ user.email }}&lt;/p&gt;
+  &lt;p&gt;Joined: {{ user.date_joined|date:"M d, Y" }}&lt;/p&gt;
+&lt;/div&gt;
+{% endpartialdef %}
+
+&lt;!-- Usage --&gt;
+{% for user in users %}
+  {% partial user_card %}
+{% endfor %}
+        </pre>
+        
+        <h3>Advanced Usage</h3>
+        <h4>Inline Partials</h4>
+        <p>You can render a partial's content inline at the point of definition:</p>
+        <pre>
+{% partialdef alert_message inline %}
+&lt;div class="alert alert-{{ level }}"&gt;
+  {{ message }}
+&lt;/div&gt;
+{% endpartialdef %}
+        </pre>
+        
+        <h4>Partial Loading</h4>
+        <p>Partials can also be loaded via the template loader:</p>
+        <pre>
+from django.template.loader import get_template
+
+# Load an entire template
+template = get_template("example.html")
+
+# Load a specific fragment from a template
+partial = get_template("example.html#partial_name")
+        </pre>
+        
+        <h3>Benefits</h3>
+        <ul>
+            <li>Keep related template code together</li>
+            <li>Reduce file clutter</li>
+            <li>Improve template maintainability</li>
+            <li>Enable better component organization</li>
+            <li>Simplify template inheritance patterns</li>
+        </ul>
+        
+        <h2>3. Content Security Policy (CSP)</h2>
+        <h3>What is CSP?</h3>
+        <p>Content Security Policy (CSP) is a security standard that helps prevent cross-site scripting (XSS), clickjacking, and other code injection attacks. Django 6 introduces built-in support for CSP, making it easier than ever to secure your applications.</p>
+        
+        <h3>Configuration</h3>
+        <pre>
+# settings.py
+from django.utils.csp import CSP
+
+MIDDLEWARE = [
+    # ... other middleware
+    'django.middleware.content_security_policy.ContentSecurityPolicyMiddleware',
+]
+
+SECURE_CSP = {
+    "default-src": [CSP.SELF],
+    "script-src": [CSP.SELF, 'https://cdn.example.com'],
+    "style-src": [CSP.SELF, 'https://fonts.googleapis.com'],
+    "img-src": [CSP.SELF, 'data:', 'https:'],
+    "font-src": [CSP.SELF, 'https://fonts.gstatic.com'],
+    "connect-src": [CSP.SELF],
+}
+
+# Report-only mode for testing
+SECURE_CSP_REPORT_ONLY = True
+        </pre>
+        
+        <h3>Using Nonces</h3>
+        <p>For inline scripts, you can use nonces:</p>
+        <pre>
+# views.py
+from django.utils.csp import csp_nonce
+
+def my_view(request):
+    nonce = csp_nonce()
+    return render(request, 'template.html', {'nonce': nonce})
+        </pre>
+        
+        <pre>
+&lt;!-- template.html --&gt;
+&lt;script nonce="{{ nonce }}"&gt;
+  console.log('This script is allowed by CSP');
+&lt;/script&gt;
+        </pre>
+        
+        <h3>Benefits</h3>
+        <ul>
+            <li>Protection against XSS attacks</li>
+            <li>Control over resource loading</li>
+            <li>Improved security posture</li>
+            <li>Easy configuration</li>
+            <li>Built-in middleware support</li>
+        </ul>
+        
+        <h2>4. Background Tasks Framework</h2>
+        <h3>Overview</h3>
+        <p>Django 6 introduces a native Tasks framework for running code outside the HTTP request-response cycle. This is particularly useful for long-running operations that would otherwise block the user interface.</p>
+        
+        <h3>Defining Tasks</h3>
+        <pre>
+# tasks.py
+from django.core.mail import send_mail
+from django.tasks import task
+
+@task
+def send_welcome_email(user_id):
+    from myapp.models import User
+    user = User.objects.get(id=user_id)
+    return send_mail(
+        subject="Welcome to Our Platform",
+        message=f"Hello {user.name}, welcome to our platform!",
+        from_email="noreply@example.com",
+        recipient_list=[user.email],
+    )
+
+@task
+def process_large_dataset(dataset_id):
+    from myapp.models import Dataset
+    dataset = Dataset.objects.get(id=dataset_id)
+    # Process the dataset
+    # ...
+    dataset.status = 'processed'
+    dataset.save()
+        </pre>
+        
+        <h3>Enqueuing Tasks</h3>
+        <pre>
+# views.py
+from .tasks import send_welcome_email, process_large_dataset
+
+def register_user(request):
+    # ... user registration logic ...
+    user = User.objects.create(...)
+    
+    # Enqueue the welcome email task
+    send_welcome_email.enqueue(user_id=user.id)
+    
+    return redirect('welcome')
+
+def upload_dataset(request):
+    # ... dataset upload logic ...
+    dataset = Dataset.objects.create(...)
+    
+    # Enqueue the processing task
+    process_large_dataset.enqueue(dataset_id=dataset.id)
+    
+    return redirect('processing')
+        </pre>
+        
+        <h3>Task Configuration</h3>
+        <pre>
+# settings.py
+TASKS = {
+    'backend': 'django.tasks.backends.database.DatabaseBackend',
+    'task_ttl': 3600,  # Tasks expire after 1 hour
+    'result_ttl': 1800,  # Results expire after 30 minutes
+}
+        </pre>
+        
+        <h3>Benefits</h3>
+        <ul>
+            <li>Native task handling without external dependencies</li>
+            <li>Simplified background processing</li>
+            <li>Better integration with Django</li>
+            <li>Improved performance for long-running operations</li>
+            <li>Easy task management and monitoring</li>
+        </ul>
+        
+        <h2>5. Modern Email API</h2>
+        <h3>Overview</h3>
+        <p>Django 6 adopts Python's modern email API, offering a cleaner and Unicode-friendly interface for composing and sending emails. This update replaces the older legacy API with the more modern <code>email.message.EmailMessage</code> class.</p>
+        
+        <h3>New Features</h3>
+        <h4>Using EmailMessage</h4>
+        <pre>
+from django.core.mail import EmailMessage
+
+# Create a message
+message = EmailMessage(
+    subject="Hello from Django 6",
+    body="This is the email body",
+    from_email="sender@example.com",
+    to=["recipient@example.com"],
+    cc=["cc@example.com"],
+    bcc=["bcc@example.com"],
+)
+
+# Add attachments
+message.attach("document.pdf", pdf_content, "application/pdf")
+
+# Send the message
+message.send()
+        </pre>
+        
+        <h4>HTML Emails</h4>
+        <pre>
+from django.core.mail import EmailMessage
+
+message = EmailMessage(
+    subject="HTML Email Example",
+    body="&lt;h1&gt;Welcome!&lt;/h1&gt;&lt;p&gt;This is an HTML email.&lt;/p&gt;",
+    from_email="sender@example.com",
+    to=["recipient@example.com"],
+)
+message.content_subtype = "html"  # Set content type to HTML
+message.send()
+        </pre>
+        
+        <h4>Using MIMEPart</h4>
+        <pre>
+from email.mime.text import MIMEText
+from django.core.mail import EmailMessage
+
+# Create alternative parts
+text_part = MIMEText("This is the plain text version", "plain")
+html_part = MIMEText("&lt;p&gt;This is the &lt;b&gt;HTML&lt;/b&gt; version&lt;/p&gt;", "html")
+
+# Create the message
+message = EmailMessage(
+    subject="Multipart Email",
+    from_email="sender@example.com",
+    to=["recipient@example.com"],
+)
+
+# Attach the parts
+message.attach(text_part)
+message.attach(html_part)
+
+message.send()
+        </pre>
+        
+        <h3>Benefits</h3>
+        <ul>
+            <li>Uses Python's modern <code>email.message.EmailMessage</code></li>
+            <li>Cleaner interface</li>
+            <li>Better Unicode support</li>
+            <li>Simplified email composition</li>
+            <li>Improved compatibility with modern email standards</li>
+        </ul>
+        
+        <h2>6. AsyncPaginator</h2>
+        <h3>Overview</h3>
+        <p>Django 6 introduces <code>AsyncPaginator</code> and <code>AsyncPage</code> for async implementations of pagination. This is particularly useful for async views and improves performance when dealing with large datasets.</p>
+        
+        <h3>Usage</h3>
+        <pre>
+# views.py
+from django.core.paginator import AsyncPaginator
+from django.http import JsonResponse
+from asgiref.sync import sync_to_async
+
+async def async_paginated_view(request):
+    # Get the page number from the request
+    page_number = request.GET.get('page', 1)
+    
+    # Create an async paginator
+    async_paginator = AsyncPaginator(MyModel.objects.all(), 25)
+    
+    # Get the page
+    page = await async_paginator.aget_page(page_number)
+    
+    # Convert objects to dictionaries for JSON response
+    objects = [await sync_to_async(lambda obj: {
+        'id': obj.id,
+        'name': obj.name,
+        # ... other fields
+    })(obj) for obj in page]
+    
+    return JsonResponse({
+        'objects': objects,
+        'has_next': page.has_next(),
+        'has_previous': page.has_previous(),
+        'page_number': page.number,
+    })
+        </pre>
+        
+        <h3>Template Usage</h3>
+        <pre>
+&lt;!-- In your template --&gt;
+{% for item in page %}
+  &lt;div&gt;{{ item.name }}&lt;/div&gt;
+{% endfor %}
+
+&lt;div class="pagination"&gt;
+  {% if page.has_previous %}
+    &lt;a href="?page={{ page.previous_page_number }}"&gt;Previous&lt;/a&gt;
+  {% endif %}
+  
+  &lt;span&gt;Page {{ page.number }} of {{ page.paginator.num_pages }}&lt;/span&gt;
+  
+  {% if page.has_next %}
+    &lt;a href="?page={{ page.next_page_number }}"&gt;Next&lt;/a&gt;
+  {% endif %}
+&lt;/div&gt;
+        </pre>
+        
+        <h3>Benefits</h3>
+        <ul>
+            <li>Better performance for async views</li>
+            <li>Improved user experience</li>
+            <li>Native async support</li>
+            <li>Seamless integration with existing pagination patterns</li>
+        </ul>
+        
+        <h2>7. Other Notable Features</h2>
+        <h3>Improved Password Hashing</h3>
+        <p>The default iteration count for the PBKDF2 password hasher is increased from 1,000,000 to 1,200,000, providing better security:</p>
+        <pre>
+# settings.py
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',  # Uses 1,200,000 iterations
+    # ... other hashers
+]
+        </pre>
+        
+        <h3>Enhanced GIS Support</h3>
+        <p>New functions and lookups for geographic data processing:</p>
+        <pre>
+from django.contrib.gis.db.models import PointField
+from django.contrib.gis.geos import Point
+
+# New Rotate database function
+from django.contrib.gis.db.models.functions import Rotate
+
+# New lookups
+queryset = MyModel.objects.filter(
+    location__coveredby=some_polygon,
+    location__isvalid=True,
+)
+        </pre>
+        
+        <h3>Better Static Files Handling</h3>
+        <p><code>ManifestStaticFilesStorage</code> ensures consistent path ordering in manifest files:</p>
+        <pre>
+# settings.py
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+        </pre>
+        
+        <h3>Font Awesome Icons in Admin</h3>
+        <p>The Django admin now uses Font Awesome Free icon set (version 6.7.2) for a more modern interface.</p>
+        
+        <h3>New Admin Customizations</h3>
+        <pre>
+# admin.py
+from django.contrib import admin
+
+class MyModelAdmin(admin.ModelAdmin):
+    # New attribute for customizing password change form
+    password_change_form = MyCustomPasswordChangeForm
+
+admin.site.register(MyModel, MyModelAdmin)
+        </pre>
+        
+        <h2>8. Migration Guide</h2>
+        <h3>From Third-Party Template Partials</h3>
+        <p>If you were using the <code>django-template-partials</code> third-party package:</p>
+        <ol>
+            <li>Remove the package from your requirements:
+                <pre>pip uninstall django-template-partials</pre>
+            </li>
+            <li>Remove it from <code>INSTALLED_APPS</code>:
+                <pre>
+# Remove this line
+# 'template_partials',
+                </pre>
+            </li>
+            <li>Update your templates to use the built-in syntax (no changes needed in most cases).</li>
+        </ol>
+        
+        <h3>CSP Migration</h3>
+        <p>If you were using a third-party CSP package:</p>
+        <ol>
+            <li>Remove the third-party package:
+                <pre>pip uninstall django-csp</pre>
+            </li>
+            <li>Update your settings to use the new built-in configuration:
+                <pre>
+# Replace the old configuration with:
+from django.utils.csp import CSP
+
+MIDDLEWARE = [
+    # ... remove old CSP middleware
+    'django.middleware.content_security_policy.ContentSecurityPolicyMiddleware',
+]
+
+SECURE_CSP = {
+    # ... your CSP policy
+}
+                </pre>
+            </li>
+        </ol>
+        
+        <h2>9. Best Practices</h2>
+        <h3>Template Partials Best Practices</h3>
+        <ol>
+            <li><strong>Use descriptive names</strong> for your partials:
+                <pre>
+{% partialdef user_profile_card %}
+{% partialdef product_thumbnail %}
+                </pre>
+            </li>
+            <li><strong>Keep partials focused</strong> on a single responsibility.</li>
+            <li><strong>Pass context explicitly</strong> rather than relying on global context.</li>
+        </ol>
+        
+        <h3>CSP Best Practices</h3>
+        <ol>
+            <li><strong>Start with report-only mode</strong> to identify issues:
+                <pre>SECURE_CSP_REPORT_ONLY = True</pre>
+            </li>
+            <li><strong>Use specific sources</strong> rather than wildcards when possible.</li>
+            <li><strong>Implement nonce-based CSP</strong> for inline scripts.</li>
+        </ol>
+        
+        <h3>Background Tasks Best Practices</h3>
+        <ol>
+            <li><strong>Handle exceptions</strong> in your tasks:
+                <pre>
+@task
+def my_task():
+    try:
+        # Task logic
+        pass
+    except Exception as e:
+        # Log the error
+        logger.error(f"Task failed: {e}")
+        # Re-raise if needed
+        raise
+                </pre>
+            </li>
+            <li><strong>Keep tasks idempotent</strong> when possible.</li>
+            <li><strong>Monitor task execution</strong> and set appropriate TTL values.</li>
+        </ol>
+        
+        <h2>10. Conclusion</h2>
+        <p>Django 6 brings significant improvements that will enhance your development experience and application security. Template partials offer a cleaner way to organize your templates, while CSP provides better security out of the box. The background tasks framework simplifies async processing, and the modern email API makes email handling more robust.</p>
+        
+        <p>Key takeaways:</p>
+        <ul>
+            <li>Template partials simplify template organization</li>
+            <li>Built-in CSP improves application security</li>
+            <li>Native background tasks eliminate external dependencies</li>
+            <li>Modern email API provides better Unicode support</li>
+            <li>AsyncPaginator enhances async view performance</li>
+        </ul>
+        
+        <p>Start implementing these features in your projects today to take full advantage of what Django 6 has to offer!</p>
+        
+        <div class="page-break"></div>
+        
+        <h2>About the Author</h2>
+        <p><strong>Winston Mhango</strong> is a senior Django developer with over 8 years of experience building web applications. He has contributed to numerous open-source Django projects and has also written a Django guide titled <a href="https://marvelous-founder-1838.kit.com/1c997bd676">ILLUSTRATED GUIDE TO DJANGO</a>. His expertise in Django internals and best practices makes him the perfect guide for mastering Django 6.</p>
+        
+        <div class="contact-info">
+            <h3>Contact Information:</h3>
+            <ul>
+                <li>Email: <a href="mailto:winstonmhango23@gmail.com">winstonmhango23@gmail.com</a></li>
+                <li>LinkedIn: <a href="https://www.linkedin.com/in/winston-mhango-401980ab/">Winston Mhango</a></li>
+                <li>GitHub: <a href="https://github.com/winstonmhango23/">winstonmhango23</a></li>
+            </ul>
+        </div>
+        
+        <div class="footer">
+            <p>This guide is © 2025 Winston Mhango. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

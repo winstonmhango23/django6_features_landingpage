@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Django 6 Features Guide - Free Download</title>
+  <meta name="description" content="Get your free guide to Django 6's powerful new features including template partials, CSP, background tasks, and more.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'brand-orange': '#E85D3F',
+            'brand-blue': '#1A2B4A',
+            'brand-green': '#10B981',
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .text-balance {
+        text-wrap: balance;
+      }
+      .font-script {
+        font-family: 'Dancing Script', cursive;
+      }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  {% block head %}{% endblock %}
+</head>
+<body class="bg-gray-100">
+  {% block content %}{% endblock %}
+</body>
+</html>
