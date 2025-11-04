@@ -1,28 +1,13 @@
-[build]
-setup = [
-  "echo 'Setting up Django application'"
-]
-
-[phases]
-  [phases.setup]
-  name = "Setting up Python environment"
-  
-  [phases.install]
-  name = "Installing Python dependencies"
-  
-  [phases.start]
-  name = "Starting Django application"
-
 [variables]
 PYTHON_VERSION = "3.11"
 PORT = "8000"
-PIP_FLAGS = "--pre"
-NIXPACKS_PIP_FLAGS = "--pre"
 
 [install]
 cmds = [
-  "pip install --pre -r requirements.txt"
+  "pip install --upgrade pip",
+  "pip install --pre Django==6.0b1",
+  "pip install asgiref==3.10.0 dj-database-url==3.0.1 sqlparse==0.5.3 gunicorn==22.0.0 psycopg2-binary==2.9.9"
 ]
 
 [start]
-cmd = "cd landingpage && PYTHONPATH=/app/landingpage python manage.py migrate && PYTHONPATH=/app/landingpage gunicorn landingpage.wsgi:application"
+cmd = "cd landingpage && python manage.py migrate && gunicorn landingpage.wsgi:application"

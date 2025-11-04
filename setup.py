@@ -1,0 +1,14 @@
+from setuptools import setup
+
+setup(
+    name="django6-features-landingpage",
+    version="1.0.0",
+    install_requires=[
+        "Django>=6.0b1",
+        "asgiref==3.10.0",
+        "dj-database-url==3.0.1",
+        "sqlparse==0.5.3",
+        "gunicorn==22.0.0",
+        "psycopg2-binary==2.9.9",
+    ],
+)

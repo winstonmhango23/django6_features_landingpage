@@ -1,0 +1,6 @@
+#!/bin/bash
+echo "Installing with --pre flag"
+pip install --upgrade pip
+echo "Installing Django 6.0b1 with --pre flag"
+pip install --pre Django==6.0b1
+pip install asgiref==3.10.0 dj-database-url==3.0.1 sqlparse==0.5.3 gunicorn==22.0.0 psycopg2-binary==2.9.9

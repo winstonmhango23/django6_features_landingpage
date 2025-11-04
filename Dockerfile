@@ -5,60 +5,20 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PORT 8000
-ENV PIP_FLAGS="--pre"
-ENV NIXPACKS_PIP_FLAGS="--pre"
 
 # Set work directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update \
-    && apt-get install -y --no-install-recommends \
-        build-essential \
-        libpq-dev \
-        netcat \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Python dependencies with --pre flag
-COPY ./requirements.txt /app/requirements.txt
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
+# Install Python dependencies
+COPY requirements.txt /app/
 RUN pip install --upgrade pip
 RUN pip install --pre -r requirements.txt
 
 # Copy project
-COPY ./landingpage /app
+COPY landingpage /app/
 
-# Expose port (use environment variable)
+# Expose port
 EXPOSE $PORT
 
-# Create a script to run the application
-COPY <<'EOF' /app/start.sh
-#!/bin/bash
-
-# Wait for the database to be ready (if DATABASE_URL is set)
-if [ -n "$DATABASE_URL" ]; then
-  echo "Waiting for database..."
-  # Extract host and port from DATABASE_URL if possible
-  # This is a simplified check, in production you might want a more robust solution
-fi
-
-# Apply database migrations
-cd landingpage && python manage.py migrate --noinput
-
-# Collect static files
-cd .. && python manage.py collectstatic --noinput --clear
-
-# Create superuser if environment variables are set
-if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; then
-  echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('${DJANGO_SUPERUSER_USERNAME}', '${DJANGO_SUPERUSER_EMAIL:-admin@example.com}', '${DJANGO_SUPERUSER_PASSWORD}') if not User.objects.filter(username='${DJANGO_SUPERUSER_USERNAME}').exists() else None" | python manage.py shell
-fi
-
-# Start the server using Gunicorn with correct Python path
-cd landingpage && gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
-EOF
-
-RUN chmod +x /app/start.sh
-
-# Run the start script
-CMD ["/app/start.sh"]
+# Run the application
+CMD ["sh", "-c", "cd landingpage && python manage.py migrate --noinput && gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT"]
