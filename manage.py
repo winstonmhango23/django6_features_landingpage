@@ -6,12 +6,11 @@ import sys
 
 def main():
     """Run administrative tasks."""
+    # Change to the landingpage directory
+    os.chdir(os.path.join(os.path.dirname(__file__), "landingpage"))
+    
     # Set the Django settings module
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "landingpage.settings")
-    
-    # Add the landingpage directory to the Python path
-    project_dir = os.path.join(os.path.dirname(__file__), "landingpage")
-    sys.path.insert(0, project_dir)
     
     # Import and run the actual Django manage.py
     try:
