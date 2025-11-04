@@ -1,0 +1,14 @@
+# Sevalla Deployment Configuration
+build:
+  method: docker
+  dockerfile: Dockerfile
+
+# Environment variables
+env:
+  PORT: 8000
+  DEBUG: 0
+
+# Health check
+health:
+  path: /
+  port: $PORT
