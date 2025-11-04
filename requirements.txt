@@ -1,0 +1,2 @@
+# Delegate to the requirements.txt in the landingpage directory
+-r landingpage/requirements.txt
