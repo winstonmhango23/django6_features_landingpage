@@ -49,8 +49,8 @@ if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; t
   echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('${DJANGO_SUPERUSER_USERNAME}', '${DJANGO_SUPERUSER_EMAIL:-admin@example.com}', '${DJANGO_SUPERUSER_PASSWORD}') if not User.objects.filter(username='${DJANGO_SUPERUSER_USERNAME}').exists() else None" | python manage.py shell
 fi
 
-# Start the server using the PORT environment variable
-python manage.py runserver 0.0.0.0:$PORT
+# Start the server using Gunicorn
+cd /app && gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
 EOF
 
 RUN chmod +x /app/start.sh
