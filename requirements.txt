@@ -1,2 +1,4 @@
-# Delegate to the requirements.txt in the landingpage directory
+# Install Django 6.0b1 with --pre flag
+Django==6.0b1
+# Delegate to the requirements.txt in the landingpage directory (excluding Django)
 -r landingpage/requirements.txt
