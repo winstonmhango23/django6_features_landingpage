@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=1
+      - SECRET_KEY=django-insecure-h&+syn_%qiz!#%g5*=-b6lfzv1k)z5dhf5=_q5+fuf(v&^3paf
+      - DJANGO_SUPERUSER_USERNAME=admin
+      - DJANGO_SUPERUSER_PASSWORD=admin123
+      - DJANGO_SUPERUSER_EMAIL=admin@example.com
+    volumes:
+      - ./landingpage:/app
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    environment:
+      - POSTGRES_DB=django6_features
+      - POSTGRES_USER=django_user
+      - POSTGRES_PASSWORD=django_password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

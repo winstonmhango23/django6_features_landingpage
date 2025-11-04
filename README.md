@@ -1,198 +1,68 @@
+# Django 6 Features Landing Page
 
+A landing page for promoting the new features in Django 6, including template partials, CSP, and background tasks.
 
+## 🚀 Quick Start with Docker
 
-# Django 6.0 Landing Page with New Features Demo
-
-<img width="972" height="558" alt="Macbook-Air-127 0 0 1" src="https://github.com/user-attachments/assets/0de005a9-87d7-4ac6-b55b-3a3524ac95ee" />
-
-
-This project demonstrates the key new features of Django 6.0 through a practical landing page implementation. It showcases template partials, Content Security Policy (CSP), background tasks, and the modern email API.
-
-## Features Demonstrated
-
-1. **Template Partials** - Reusable inline template fragments without separate files
-2. **Content Security Policy (CSP)** - Built-in security middleware for XSS protection
-3. **Background Tasks Framework** - Native task processing without external dependencies
-4. **Modern Email API** - Cleaner and Unicode-friendly email composition
-
-## Blog Series
-
-This project is part of a blog series that explains Django 6.0 features in detail:
-
-- **Main Blog Post**: [Exploring Django 6.0 New Features](https://www.codetips.blog/posts/exploring-django-6-0-new-features-a-practical-landing-page-with-template-partials-csp-and-background-tasks)
-- **Comprehensive Guide**: [DJANGO6_FEATURES.html](landingpage/static/DJANGO6_FEATURES.html) (Downloadable HTML guide)
-- **Markdown Version**: [DJANGO6_FEATURES.md](landingpage/static/DJANGO6_FEATURES.md)
-
-## Author
-
-**Winston Mhango**
-- Email: [winstonmhango23@gmail.com](mailto:winstonmhango23@gmail.com)
-- LinkedIn: [Winston Mhango](https://www.linkedin.com/in/winston-mhango-401980ab/)
-- GitHub: [winstonmhango23](https://github.com/winstonmhango23/)
-
-## Prerequisites
-
-- Python 3.8 or higher
-- Django 6.0 beta (installed via `pip install --pre django`)
-- Virtual environment (recommended)
-
-## Installation
-
-1. **Clone the repository**:
+1. **Build and run the application**:
    ```bash
-   git clone <repository-url>
-   cd django6_features
+   docker-compose up --build
    ```
 
-2. **Create a virtual environment**:
-   ```bash
-   python -m venv venv
-   source venv/bin/activate  # On Windows: venv\Scripts\activate
-   ```
+2. **Access the application**:
+   Open your browser and go to http://localhost:8000
 
-3. **Install Django 6.0**:
-   ```bash
-   pip install --pre django
-   ```
+3. **Access the admin panel**:
+   Go to http://localhost:8000/admin
+   - Username: admin
+   - Password: admin123
 
-4. **Navigate to the project directory**:
+## 🛠️ Local Development Without Docker
+
+1. **Install dependencies**:
    ```bash
    cd landingpage
+   pip install -r requirements.txt
    ```
 
-5. **Apply migrations**:
+2. **Run migrations**:
    ```bash
    python manage.py migrate
    ```
 
-## Running the Project
+3. **Create a superuser**:
+   ```bash
+   python manage.py createsuperuser
+   ```
 
-1. **Start the development server**:
+4. **Run the development server**:
    ```bash
    python manage.py runserver
    ```
 
-2. **Access the landing page**:
-   Open your browser and go to `http://127.0.0.1:8000/`
-
-## Project Structure
+## 📁 Project Structure
 
 ```
 landingpage/
-├── landingpage/           # Main project settings
-│   ├── __init__.py
-│   ├── settings.py        # Project settings with CSP configuration
-│   ├── urls.py            # Main URL configuration
-│   └── wsgi.py
-├── subscriptions/         # App for handling email subscriptions
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py           # Subscription form
-│   ├── models.py          # Subscription model
-│   ├── urls.py            # App URLs
-│   └── views.py           # Views for landing page and AJAX subscription
+├── landingpage/           # Django project settings
+├── subscriptions/         # Django app for email subscriptions
 ├── templates/             # HTML templates
-│   ├── base.html          # Base template with Tailwind CSS
-│   └── landingpage.html   # Main landing page with template partials
-├── static/                # Static files (images, guides, etc.)
-│   ├── DJANGO6_FEATURES.html  # Comprehensive Django 6 guide
-│   ├── DJANGO6_FEATURES.md    # Markdown version of the guide
-│   ├── winstonjs-full-image.png  # Author full image
-│   └── winstonmhango-headshot.jpg  # Author headshot
+├── static/                # Static assets (CSS, JS, images)
 └── manage.py              # Django management script
 ```
 
-## Key Django 6.0 Features Implementation
+## 🎯 Features
 
-### Template Partials
+- Email subscription form with AJAX
+- Responsive design with Tailwind CSS
+- Template partials for reusable components
+- Docker support for easy deployment
+- PostgreSQL database integration
 
-Template partials allow defining reusable template fragments inline:
+## 🚀 Deployment
 
-```django
-{% partialdef subscription_modal %}
-<!-- Modal content -->
-{% endpartialdef %}
+See [SEVALLA_DEPLOYMENT_GUIDE.md](SEVALLA_DEPLOYMENT_GUIDE.md) for detailed deployment instructions.
 
-<!-- Usage -->
-{% partial subscription_modal %}
-```
+## 📄 License
 
-### Content Security Policy (CSP)
-
-CSP is configured in `settings.py`:
-
-```python
-SECURE_CSP = {
-    "default-src": [CSP.SELF],
-    "script-src": [CSP.SELF, 'https://cdn.tailwindcss.com'],
-    "style-src": [CSP.SELF, 'https://fonts.googleapis.com'],
-    "img-src": [CSP.SELF, 'data:', 'https:'],
-    "font-src": [CSP.SELF, 'https://fonts.gstatic.com'],
-}
-```
-
-### Background Tasks
-
-Native background tasks are implemented in `tasks.py`:
-
-```python
-from django.tasks import task
-
-@task
-def send_welcome_email(user_id):
-    # Task implementation
-    pass
-```
-
-## Customization
-
-### Updating CSP Settings
-
-Modify the CSP configuration in `landingpage/settings.py`:
-
-```python
-SECURE_CSP = {
-    # Your custom CSP policy
-}
-```
-
-### Modifying Template Partials
-
-Edit the modal partial in `templates/landingpage.html`:
-
-```django
-{% partialdef subscription_modal %}
-<!-- Your custom modal content -->
-{% endpartialdef %}
-```
-
-## Downloadable Resources
-
-The following resources are available in the `static/` directory:
-
-1. **DJANGO6_FEATURES.html** - Complete HTML guide to Django 6 features
-2. **DJANGO6_FEATURES.md** - Markdown version of the Django 6 guide
-3. **winstonjs-full-image.png** - Author full image
-4. **winstonmhango-headshot.jpg** - Author headshot
-
-## Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Create a pull request
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-- Thanks to the Django team for the amazing work on Django 6.0
-<<<<<<< HEAD
-- Special thanks to Winston Mhango for the comprehensive Django 6 guide
-=======
-- Special thanks to Winston Mhango for the comprehensive Django 6 guide
->>>>>>> 852a57fef630dd624fe59f3081a6c795c23b1d59
+This project is licensed under the MIT License.
