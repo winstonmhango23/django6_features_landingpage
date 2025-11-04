@@ -21,4 +21,4 @@ PORT = "8000"
 cmd = "pip install -r requirements.txt"
 
 [start]
-cmd = "python manage.py migrate && cd landingpage && gunicorn landingpage.wsgi:application"
+cmd = "python manage.py migrate && gunicorn landingpage.wsgi:application"
