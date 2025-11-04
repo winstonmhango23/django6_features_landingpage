@@ -10,7 +10,7 @@ def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "landingpage.settings")
     
     # Add the landingpage directory to the Python path
-    project_dir = os.path.join(os.path.dirname(__file__), "landingpage")
+    project_dir = os.path.join(os.path.dirname(__file__), "landingpage", "landingpage")
     sys.path.insert(0, project_dir)
     
     # Import and run the actual Django manage.py

@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load partials %}
 {% block content %}
 <div class="min-h-screen">
   <!-- Header -->
@@ -248,39 +249,14 @@
     </div>
   </section>
 
-  <!-- Footer CTA -->
-  <section class="bg-[#1A2B4A] text-white py-20 relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 left-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl translate-x-1/2 translate-y-1/2"></div>
-    </div>
-
-    <div class="container mx-auto px-6 text-center relative z-10">
-      <div class="flex gap-1 justify-center mb-6">
-        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
-        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
-        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
-        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
-        <svg class="w-5 h-5 fill-yellow-400 text-yellow-400" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-        </svg>
-      </div>
-
-      <h2 class="text-5xl font-bold mb-4">MASTER DJANGO 6</h2>
-      <p class="text-xl mb-6">Proven Ways To Grow Your Development Skills Faster!</p>
-      <p class="text-sm text-gray-300 max-w-2xl mx-auto mb-8 leading-relaxed">
-        Join thousands of Django developers who have already upgraded their skills with Django 6. 
+  <!-- Final CTA Section -->
+  <section class="bg-[#10B981] text-white py-16">
+    <div class="container mx-auto px-6 text-center">
+      <h2 class="text-3xl font-bold mb-4">Ready to Master Django 6?</h2>
+      <p class="text-lg mb-8 max-w-2xl mx-auto">
         Get instant access to the complete guide and start building better applications today.
       </p>
-      <button id="open-modal-3" class="bg-[#10B981] hover:bg-[#059669] text-white px-8 py-4 text-lg rounded-full">
+      <button id="open-modal-3" class="bg-[#1A2B4A] hover:bg-[#0F1A2E] text-white px-8 py-4 text-lg rounded-full">
         GET YOUR FREE COPY
       </button>
     </div>

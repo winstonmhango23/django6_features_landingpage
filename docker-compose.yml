@@ -7,7 +7,7 @@ services:
       - "8000:8000"
     environment:
       - DEBUG=1
-      - SECRET_KEY=django-insecure-h&+syn_%qiz!#%g5*=-b6lfzv1k)z5dhf5=_q5+fuf(v&^3paf
+      - SECRET_KEY=django-insecure-h&+syn_%qiz!#%g5*=-b6lfzv1k)z5dhf5=_q5+fuf(v&^3paf)
       - DJANGO_SUPERUSER_USERNAME=admin
       - DJANGO_SUPERUSER_PASSWORD=admin123
       - DJANGO_SUPERUSER_EMAIL=admin@example.com
@@ -15,6 +15,7 @@ services:
       - ./landingpage:/app
     depends_on:
       - db
+    working_dir: /app
 
   db:
     image: postgres:13

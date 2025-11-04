@@ -39,18 +39,18 @@ if [ -n "$DATABASE_URL" ]; then
 fi
 
 # Apply database migrations
-python manage.py migrate --noinput
+cd landingpage && PYTHONPATH=/app/landingpage python manage.py migrate --noinput
 
 # Collect static files
-python manage.py collectstatic --noinput --clear
+cd .. && python manage.py collectstatic --noinput --clear
 
 # Create superuser if environment variables are set
 if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; then
   echo "from django.contrib.auth import get_user_model; User = get_user_model(); User.objects.create_superuser('${DJANGO_SUPERUSER_USERNAME}', '${DJANGO_SUPERUSER_EMAIL:-admin@example.com}', '${DJANGO_SUPERUSER_PASSWORD}') if not User.objects.filter(username='${DJANGO_SUPERUSER_USERNAME}').exists() else None" | python manage.py shell
 fi
 
-# Start the server using Gunicorn
-gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
+# Start the server using Gunicorn with correct Python path
+cd landingpage && PYTHONPATH=/app/landingpage gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
 EOF
 
 RUN chmod +x /app/start.sh

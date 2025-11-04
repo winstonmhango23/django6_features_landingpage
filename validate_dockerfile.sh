@@ -20,7 +20,8 @@ while IFS= read -r line; do
         source=$(echo $line | awk '{print $2}')
         # Skip if it's the heredoc syntax
         if [[ $source != "<<"* ]]; then
-            if [ ! -e "./landingpage/$source" ] && [ ! -e "$source" ]; then
+            # Check if source exists in the landingpage directory or root
+            if [ ! -e "./landingpage/$source" ] && [ ! -e "$source" ] && [ ! -e "./$source" ]; then
                 echo "Warning: COPY source '$source' does not exist"
             fi
         fi
