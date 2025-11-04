@@ -19,7 +19,7 @@ RUN apt-get update \
 
 # Install Python dependencies
 COPY ./landingpage/requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir --pre -r requirements.txt
 
 # Copy project
 COPY ./landingpage /app
