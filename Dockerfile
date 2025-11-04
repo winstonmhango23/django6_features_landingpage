@@ -5,6 +5,8 @@ FROM python:3.11-slim
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 ENV PORT 8000
+ENV PIP_FLAGS="--pre"
+ENV NIXPACKS_PIP_FLAGS="--pre"
 
 # Set work directory
 WORKDIR /app
@@ -19,7 +21,10 @@ RUN apt-get update \
 
 # Install Python dependencies with --pre flag
 COPY ./requirements.txt /app/requirements.txt
-RUN pip install --no-cache-dir --pre -r requirements.txt
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
+RUN pip install --upgrade pip
+RUN pip install --pre -r requirements.txt
 
 # Copy project
 COPY ./landingpage /app
@@ -39,7 +44,7 @@ if [ -n "$DATABASE_URL" ]; then
 fi
 
 # Apply database migrations
-cd landingpage && PYTHONPATH=/app/landingpage python manage.py migrate --noinput
+cd landingpage && python manage.py migrate --noinput
 
 # Collect static files
 cd .. && python manage.py collectstatic --noinput --clear
@@ -50,7 +55,7 @@ if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; t
 fi
 
 # Start the server using Gunicorn with correct Python path
-cd landingpage && PYTHONPATH=/app/landingpage gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
+cd landingpage && gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
 EOF
 
 RUN chmod +x /app/start.sh
