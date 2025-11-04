@@ -50,7 +50,7 @@ if [ -n "$DJANGO_SUPERUSER_USERNAME" ] && [ -n "$DJANGO_SUPERUSER_PASSWORD" ]; t
 fi
 
 # Start the server using Gunicorn
-cd /app && gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
+gunicorn landingpage.wsgi:application --bind 0.0.0.0:$PORT
 EOF
 
 RUN chmod +x /app/start.sh
