@@ -20,7 +20,10 @@ NIXPACKS_PYTHON_PACKAGE_MANAGER = "requirements"
 PIP_FLAGS = "--pre"
 
 [install]
-cmd = "pip install --pre -r requirements.txt"
+cmds = [
+  "pip install --pre Django==6.0b1",
+  "pip install -r landingpage/requirements.txt"
+]
 
 [start]
 cmd = "python manage.py migrate && gunicorn landingpage.wsgi:application"
