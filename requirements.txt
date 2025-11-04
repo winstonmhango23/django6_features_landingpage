@@ -1,6 +1,4 @@
-# Install Django 6.0 beta with pre-release flag
---pre
-Django==6.0b1
+# Install other requirements (Django installed separately with --pre flag)
 asgiref==3.10.0
 dj-database-url==3.0.1
 sqlparse==0.5.3
