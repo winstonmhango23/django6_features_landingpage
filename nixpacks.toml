@@ -4,7 +4,7 @@ setup = [
 ]
 
 [start]
-cmd = "python manage.py migrate && gunicorn landingpage.wsgi:application"
+cmd = "cd landingpage && python ../manage.py migrate && gunicorn landingpage.wsgi:application"
 
 [phases]
   [phases.setup]
