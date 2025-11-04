@@ -17,7 +17,7 @@ RUN apt-get update \
         netcat \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python dependencies
+# Install Python dependencies with --pre flag
 COPY ./landingpage/requirements.txt /app/requirements.txt
 RUN pip install --no-cache-dir --pre -r requirements.txt
 
