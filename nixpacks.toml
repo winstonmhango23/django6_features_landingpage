@@ -17,7 +17,7 @@ setup = [
 PYTHON_VERSION = "3.11"
 PORT = "8000"
 NIXPACKS_PYTHON_PACKAGE_MANAGER = "requirements"
-NIXPACKS_PIP_FLAGS = "--pre"
+PIP_FLAGS = "--pre"
 
 [install]
 cmd = "pip install --pre -r requirements.txt"
