@@ -3,9 +3,6 @@ setup = [
   "echo 'Setting up Django application'"
 ]
 
-[start]
-cmd = "python manage.py migrate && cd landingpage && gunicorn landingpage.wsgi:application"
-
 [phases]
   [phases.setup]
   name = "Setting up Python environment"
@@ -21,4 +18,7 @@ PYTHON_VERSION = "3.11"
 PORT = "8000"
 
 [install]
-cmd = "pip install -r landingpage/requirements.txt"
+cmd = "pip install -r requirements.txt"
+
+[start]
+cmd = "python manage.py migrate && cd landingpage && gunicorn landingpage.wsgi:application"
