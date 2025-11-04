@@ -1,5 +1,9 @@
 # Install Django 6.0b1 with --pre flag
 --pre
 Django==6.0b1
-# Delegate to the requirements.txt in the landingpage directory (excluding Django)
--r landingpage/requirements.txt
+# Install other requirements
+asgiref==3.10.0
+dj-database-url==3.0.1
+sqlparse==0.5.3
+gunicorn==22.0.0
+psycopg2-binary==2.9.9
