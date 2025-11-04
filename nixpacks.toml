@@ -8,7 +8,7 @@ setup = [
 cmd = "pip install -r landingpage/requirements.txt"
 
 [start]
-cmd = "cd landingpage && python manage.py migrate && gunicorn landingpage.wsgi:application"
+cmd = "cd landingpage && /nix/var/nix/profiles/default/bin/python manage.py migrate && gunicorn landingpage.wsgi:application"
 
 [phases]
   [phases.setup]
