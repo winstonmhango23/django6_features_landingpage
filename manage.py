@@ -10,10 +10,9 @@ def main():
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "landingpage.settings")
     
     # Add the landingpage directory to the Python path
-    project_dir = os.path.join(os.path.dirname(__file__), "landingpage", "landingpage")
+    project_dir = os.path.join(os.path.dirname(__file__), "landingpage")
     sys.path.insert(0, project_dir)
     
-    # Import and run the actual Django manage.py
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:
